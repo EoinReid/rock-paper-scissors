@@ -22,12 +22,8 @@ def user_make_a_move(user_input):
     return user_move
 
 def computer_make_a_move():
-    move = { 
-        "1":"rock",
-        "2":"paper",
-        "3": "scissors"
-    }
-    computer_move = move[str(random.randint(1, 3))]
+    move = ["rock", "paper", "scissors"]
+    computer_move = random.choice(move)
     return computer_move
 
 # Rock-Paper-Scissors application
@@ -44,15 +40,17 @@ try:
         computer_move = computer_make_a_move()
         
         if user_move == "quit":
-            sys.exit()
+                sys.exit(0)
         elif user_move == "rock" and computer_move == "scissors":
             print("You win! Rock beats scissors!")
             user_wins += 1
         elif user_move == "paper" and computer_move == "rock":
             print("You win! Paper beats scissors!")
+
             user_wins += 1
         elif user_move == "scissors" and computer_move == "paper":
             print("You win! Scissors beats papers!")
+
             user_wins += 1
         elif user_move == computer_move:
             print("Aw no, its a draw!")
@@ -60,6 +58,8 @@ try:
         else:
             print("RIP, you lose.")
             user_loses += 1
+except SystemExit:
+    print("Thanks for playing, goodbye!")
 except:
     print("An error has occured, please try again.")
 
